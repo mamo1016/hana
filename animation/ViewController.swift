@@ -45,7 +45,7 @@ class ViewController: UIViewController {
 //
 //        //double
 //        let dVal = 100.1234
-//        print("dVal : \(dVal)")    //dVal : 100.1234
+//        print("dVal : \(dVal)")    //dVal : 100.1234//
 //
 //        //bool
 //        let bVal1 = true
