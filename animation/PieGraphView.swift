@@ -76,16 +76,24 @@ class PieGraphView: UIView {
             
             context.addArc(center: center,
                            radius: radius,
-                           startAngle: 0.0,
-                           endAngle: CGFloat(M_PI * 2.0),
+                           startAngle: 0.0, //chexk! スタートアングルの値を変えてみよう！どんなことが起こるかな？
+                           endAngle: CGFloat(M_PI * 2.0), //check! エンドアングルを値を変えてみよう！
                            clockwise: false)
-//          CGContextAddArc(context, x, y, radius,  start_angle, end_angle, 0);
-            //ここのコメントアウトを解除すると、中くりぬき
-            //CGContextAddArc(context, x, y, radius/2,  end_angle, start_angle, 1);
+
+            //check! ここのコメントアウトを解除すると、中くりぬき
+//            context.addArc(center: CGPoint(x:x,y:y),
+//                           radius: radius/2,
+//                           startAngle: end_angle,
+//                           endAngle: start_angle,
+//                           clockwise: true)
+
+//          check! 下のコメントアウトを外して今使っているsetFillColorをコメントアウトししてみよう！　どうなったか僕に説明して！
             context.setFillColor(red: 0.9,
                                  green: 0,
                                  blue: 0,
                                  alpha: 0.5)
+//            context.setFillColor(color.cgColor);
+            
             context.closePath();
             context.fillPath();
             start_angle = end_angle;
