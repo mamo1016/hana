@@ -26,7 +26,7 @@ class PieGraphView: UIView {
     }
     
     
-    func update(link:AnyObject){
+    @objc func update(link:AnyObject){
         let angle = CGFloat(Double.pi*1.0 / 10.0);
         _end_angle = _end_angle +  angle
         if(_end_angle > CGFloat(Double.pi*2)) {
@@ -39,7 +39,7 @@ class PieGraphView: UIView {
     }
     
     func startAnimating(){
-        let displayLink = CADisplayLink(target: self, selector: Selector("update:"))
+        let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
@@ -76,23 +76,23 @@ class PieGraphView: UIView {
             
             context.addArc(center: center,
                            radius: radius,
-                           startAngle: 0.0, //chexk! スタートアングルの値を変えてみよう！どんなことが起こるかな？
+                           startAngle: start_angle, //chexk! スタートアングルの値を変えてみよう！どんなことが起こるかな？
                            endAngle: CGFloat(M_PI * 2.0), //check! エンドアングルを値を変えてみよう！
                            clockwise: false)
 
             //check! ここのコメントアウトを解除すると、中くりぬき
-//            context.addArc(center: CGPoint(x:x,y:y),
-//                           radius: radius/2,
-//                           startAngle: end_angle,
-//                           endAngle: start_angle,
-//                           clockwise: true)
+            context.addArc(center: CGPoint(x:x,y:y),
+                           radius: radius/2,
+                           startAngle: end_angle,
+                           endAngle: start_angle,
+                           clockwise: true)
 
 //          check! 下のコメントアウトを外して今使っているsetFillColorをコメントアウトししてみよう！　どうなったか僕に説明して！
             context.setFillColor(red: 0.9,
                                  green: 0,
                                  blue: 0,
                                  alpha: 0.5)
-//            context.setFillColor(color.cgColor);
+            context.setFillColor(color.cgColor);
             
             context.closePath();
             context.fillPath();

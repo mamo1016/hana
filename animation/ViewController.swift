@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         params.append(["value":5 as AnyObject,"color":UIColor.blue])
         params.append(["value":8 as AnyObject,"color":UIColor.green])
         params.append(["value":10 as AnyObject,"color":UIColor.yellow])
-        graphView = PieGraphView(frame:  CGRect(x : 0, y : 30, width : 320, height : 320), params: params)
+        graphView = PieGraphView(frame:  CGRect(x : 0, y : 100, width : 320, height : 320), params: params)
         
         self.view.addSubview(graphView)
     }
