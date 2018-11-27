@@ -19,6 +19,7 @@ class PieGraphView: UIView {
     }
     
     init(frame: CGRect,params:[Dictionary<String,AnyObject>]) {
+        print(frame)
         super.init(frame: frame)
         _params = params;
         self.backgroundColor = UIColor.clear;
@@ -27,7 +28,7 @@ class PieGraphView: UIView {
     
     
     @objc func update(link:AnyObject){
-        let angle = CGFloat(Double.pi*1.0 / 10.0);
+        let angle = CGFloat(Double.pi*2.0 / 100.0);
         _end_angle = _end_angle +  angle
         if(_end_angle > CGFloat(Double.pi*2)) {
             //終了
@@ -60,7 +61,7 @@ class PieGraphView: UIView {
         }
         
         
-        var start_angle:CGFloat = -CGFloat(Double.pi * 2);
+        var start_angle:CGFloat = -CGFloat(Double.pi / 2);
         var end_angle:CGFloat    = 0;
         let radius:CGFloat  = x - 10.0;
         for dic : Dictionary<String,AnyObject> in _params {
@@ -74,24 +75,24 @@ class PieGraphView: UIView {
             context.move(to: CGPoint(x: x, y: y))
 //            context.addArc(center: center, radius: radius, startAngle: 0, endAngle: CGFloat(M_PI * 2.0), clockwise: true)
             
-            context.addArc(center: center,
+            context.addArc(center: CGPoint(x:x,y:y),
                            radius: radius,
                            startAngle: start_angle, //chexk! スタートアングルの値を変えてみよう！どんなことが起こるかな？
-                           endAngle: CGFloat(M_PI * 2.0), //check! エンドアングルを値を変えてみよう！
+                           endAngle: end_angle, //check! エンドアングルを値を変えてみよう！
                            clockwise: false)
 
             //check! ここのコメントアウトを解除すると、中くりぬき
-            context.addArc(center: CGPoint(x:x,y:y),
-                           radius: radius/2,
-                           startAngle: end_angle,
-                           endAngle: start_angle,
-                           clockwise: true)
+//            context.addArc(center: CGPoint(x:x,y:y),
+//                           radius: radius/2,
+//                           startAngle: end_angle,
+//                           endAngle: start_angle,
+//                           clockwise: true)
 
 //          check! 下のコメントアウトを外して今使っているsetFillColorをコメントアウトししてみよう！　どうなったか僕に説明して！
-            context.setFillColor(red: 0.9,
-                                 green: 0,
-                                 blue: 0,
-                                 alpha: 0.5)
+//            context.setFillColor(red: 0.9,
+//                                 green: 0,
+//                                 blue: 0,
+//                                 alpha: 0.5)
             context.setFillColor(color.cgColor);
             
             context.closePath();
@@ -102,13 +103,6 @@ class PieGraphView: UIView {
     
     }
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
 

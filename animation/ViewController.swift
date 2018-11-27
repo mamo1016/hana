@@ -15,14 +15,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let circleSize:Int = 320
         var params = [Dictionary<String,AnyObject>]()
         params.append(["value":7 as AnyObject,"color":UIColor.red])
         params.append(["value":5 as AnyObject,"color":UIColor.blue])
         params.append(["value":8 as AnyObject,"color":UIColor.green])
         params.append(["value":10 as AnyObject,"color":UIColor.yellow])
-        graphView = PieGraphView(frame:  CGRect(x : 0, y : 100, width : 320, height : 320), params: params)
-        
+        graphView = PieGraphView(frame:  CGRect(x : 0, y : 0, width : circleSize, height : circleSize), params: params)
+        graphView.backgroundColor = UIColor.gray
+        graphView.center = self.view.center
         self.view.addSubview(graphView)
     }
     
